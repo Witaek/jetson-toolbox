@@ -1,0 +1,41 @@
+# --- Python build / cache ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# --- uv / virtual envs ---
+.venv/
+.uv/
+
+# --- Test / tooling caches ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Editor / OS junk ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# --- Local env / secrets ---
+.env
+.env.*
+*.secret.*
+*.key
+
+# --- Local runtime data (not in git) ---
+models/
+data/
+logs/
