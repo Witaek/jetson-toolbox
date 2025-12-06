@@ -5,6 +5,26 @@ description = "Root workspace for the jetson toolbox."
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+  "ruff",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+exclude = [
+  ".git",
+  ".venv",
+  ".uv",
+  "build",
+  "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  
+ignore = []
+
 [tool.uv.workspace]
 members = [
   "apps/api",
