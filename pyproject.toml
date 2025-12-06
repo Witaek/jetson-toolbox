@@ -29,8 +29,8 @@ ignore = []
 members = [
   "apps/api",
   "apps/web",
-  "libs/toolbox",
+  "libs",
 ]
 
 [tool.uv.sources]
-jetson-toolbox-lib = { workspace = true }
+toolbox-libs = { workspace = true }

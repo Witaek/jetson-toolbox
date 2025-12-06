@@ -3,6 +3,7 @@ from __future__ import annotations
 from pydantic import Field, BaseModel
 from dataclasses import dataclass
 from typing import Literal, Optional, Sequence
+from pathlib import Path
 
 import numpy as np 
 
@@ -34,4 +35,4 @@ class BenchmarkResults(BaseModel):
 def benchmark_onnx_speed(onnx_path: str | Path, 
                         config: BenchmarkConfig) -> BenchmarkResults:
     
-    session = ort.Infer
+    session = ort.InferenceSession

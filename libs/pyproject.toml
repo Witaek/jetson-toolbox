@@ -1,5 +1,5 @@
 [project]
-name = "jetson-toolbox-lib"
+name = "toolbox-libs"
 version = "0.1.0"
 description = "Core domain logic for jetson-toolbox (bench, inspect, eval, datasets, viz)"
 requires-python = ">=3.11"

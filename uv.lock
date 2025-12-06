@@ -11,8 +11,8 @@ resolution-markers = [
 members = [
     "jetson-toolbox",
     "jetson-toolbox-api",
-    "jetson-toolbox-lib",
     "jetson-toolbox-web",
+    "toolbox-libs",
 ]
 
 [[package]]
@@ -92,38 +92,12 @@ provides-extras = ["dev"]
 [[package]]
 name = "jetson-toolbox-api"
 version = "0.1.0"
-source = { editable = "apps/api" }
-
-[[package]]
-name = "jetson-toolbox-lib"
-version = "0.1.0"
-source = { editable = "libs/toolbox" }
-dependencies = [
-    { name = "numpy" },
-    { name = "onnx" },
-    { name = "onnxruntime" },
-    { name = "pydantic" },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "numpy", specifier = ">=1.26" },
-    { name = "onnx", specifier = ">=1.16" },
-    { name = "onnxruntime", specifier = ">=1.18" },
-    { name = "pydantic", specifier = ">=2.9" },
-    { name = "pytest", marker = "extra == 'dev'" },
-]
-provides-extras = ["dev"]
+source = { virtual = "apps/api" }
 
 [[package]]
 name = "jetson-toolbox-web"
 version = "0.1.0"
-source = { editable = "apps/web" }
+source = { virtual = "apps/web" }
 
 [[package]]
 name = "ml-dtypes"
@@ -535,6 +509,32 @@ sdist = { url = "https://files.pythonhosted.org/packages/83/d3/803453b36afefb7c2
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl", hash = "sha256:e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5", size = 6299353, upload-time = "2025-04-27T18:04:59.103Z" },
 ]
+
+[[package]]
+name = "toolbox-libs"
+version = "0.1.0"
+source = { editable = "libs" }
+dependencies = [
+    { name = "numpy" },
+    { name = "onnx" },
+    { name = "onnxruntime" },
+    { name = "pydantic" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "numpy", specifier = ">=1.26" },
+    { name = "onnx", specifier = ">=1.16" },
+    { name = "onnxruntime", specifier = ">=1.18" },
+    { name = "pydantic", specifier = ">=2.9" },
+    { name = "pytest", marker = "extra == 'dev'" },
+]
+provides-extras = ["dev"]
 
 [[package]]
 name = "typing-extensions"
