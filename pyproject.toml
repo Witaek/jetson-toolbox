@@ -1,0 +1,16 @@
+[project]
+name = "jetson-toolbox"
+version = "0.1.0"
+description = "Root workspace for the jetson toolbox."
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.uv.workspace]
+members = [
+  "apps/api",
+  "apps/web",
+  "libs/toolbox",
+]
+
+[tool.uv.sources]
+jetson-toolbox-lib = { workspace = true }
