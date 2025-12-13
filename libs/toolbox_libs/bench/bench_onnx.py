@@ -93,3 +93,36 @@ def benchmark_onnx_speed(onnx_path: str | Path,
         p99_ms=p99_ms,
         throughput_fps=throughput_fps
     )
+
+def _format_result(r: BenchmarkResult) -> str:
+  return (
+    f"Model: {r.model_path}\n"
+    f"Provider: {r.provider}\n"
+    f"Batch size: {r.batch_size}\n"
+    f"Warmup iters: {r.warmup_iters}, Bench iters: {r.bench_iters}\n"
+    f"Latency (ms): avg={r.avg_ms:.3f}, p50={r.p50_ms:.3f}, "
+    f"p90={r.p90_ms:.3f}, p99={r.p99_ms:.3f}\n"
+    f"Throughput: {r.throughput_fps:.2f} fps\n"
+  )
+
+
+if __name__ == "__main__":
+  import argparse
+
+  parser = argparse.ArgumentParser(description="ONNX benchmark (MVP).")
+  parser.add_argument("model", type=str, help="Path to ONNX model")
+  parser.add_argument("--provider", type=str, default="cpu", choices=["cpu", "cuda"])
+  parser.add_argument("--batch-size", type=int, default=1)
+  parser.add_argument("--warmup-iters", type=int, default=10)
+  parser.add_argument("--bench-iters", type=int, default=50)
+
+  args = parser.parse_args()
+
+  cfg = BenchmarkConfig(
+    warmup_iters=args.warmup_iters,
+    bench_iters=args.bench_iters,
+    batch_size=args.batch_size,
+    provider=args.provider,
+  )
+  result = benchmark_onnx_speed(args.model, cfg)
+  print(_format_result(result))
