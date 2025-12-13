@@ -17,11 +17,10 @@ PROVIDER_MAPPING = {
 }
 
 def map_provider(provider_key: str) ->  List[str] :
-    if provider_key not in PROVIDER_MAPPING.keys:
+    if provider_key not in PROVIDER_MAPPING.keys():
         raise ValueError
     return [PROVIDER_MAPPING[provider_key]]
 
-@dataclass
 class BenchmarkConfig(BaseModel):
     warmup_iters: int = Field(1, gt=0)
     bench_iters: int = Field(1, gt=0)
@@ -29,12 +28,12 @@ class BenchmarkConfig(BaseModel):
     batch_size: int = Field(1, gt=0)
     input_shape: Optional[Sequence[int]] = None
 
-@dataclass
 class BenchmarkResults(BaseModel):
     onnx_path: str | Path
     warmup_iters: int = Field(1, gt=0)
     bench_iters: int = Field(1, gt=0)
     provider: str = "cpu"
+    batch_size: int = Field(1, gt=0)
 
     avg_ms: float
     p50_ms: float
@@ -86,7 +85,7 @@ def benchmark_onnx_speed(onnx_path: str | Path,
         onnx_path = onnx_path,
         warmup_iters = cfg.warmup_iters,
         bench_iters = cfg.bench_iters,
-        provider = provider,
+        provider = provider[0],
         avg_ms=avg_ms,
         p50_ms=p50_ms,
         p90_ms=p90_ms,
@@ -94,9 +93,9 @@ def benchmark_onnx_speed(onnx_path: str | Path,
         throughput_fps=throughput_fps
     )
 
-def _format_result(r: BenchmarkResult) -> str:
+def _format_result(r: BenchmarkResults) -> str:
   return (
-    f"Model: {r.model_path}\n"
+    f"Model: {r.onnx_path}\n"
     f"Provider: {r.provider}\n"
     f"Batch size: {r.batch_size}\n"
     f"Warmup iters: {r.warmup_iters}, Bench iters: {r.bench_iters}\n"

@@ -41,7 +41,7 @@ def build_identity_model() -> onnx.ModelProto:
     )
 
     opset = helper.make_operatorsetid("", 13)
-    model = helper.make_model(graph, opset_imports=[opset])
+    model = helper.make_model(graph, opset_imports=[opset], ir_version=11)
     onnx.checker.check_model(model)
     return model
 
