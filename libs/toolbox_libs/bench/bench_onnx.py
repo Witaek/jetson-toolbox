@@ -1,15 +1,12 @@
 from __future__ import annotations
 
-from pydantic import Field, BaseModel
-from dataclasses import dataclass
-from typing import Literal, Optional, Sequence, List
-from pathlib import Path
-
-import numpy as np 
-
 import time
-import onnx
-import onnxruntime as ort 
+from pathlib import Path
+from typing import List, Literal, Optional, Sequence
+
+import numpy as np
+import onnxruntime as ort
+from pydantic import BaseModel, Field
 
 PROVIDER_MAPPING = {
     "cuda":"CUDAExecutionProvider",
