@@ -87,7 +87,8 @@ def benchmark_onnx_speed(onnx_path: str | Path,
         p50_ms=p50_ms,
         p90_ms=p90_ms,
         p99_ms=p99_ms,
-        throughput_fps=throughput_fps
+        throughput_fps=throughput_fps,
+        batch_size=cfg.batch_size
     )
 
 def _format_result(r: BenchmarkResults) -> str:
