@@ -1,6 +1,0 @@
-[project]
-name = "jetson-toolbox-api"
-version = "0.1.0"
-description = "API  logic for jetson-toolbox."
-requires-python = ">=3.11"
-dependencies = []
